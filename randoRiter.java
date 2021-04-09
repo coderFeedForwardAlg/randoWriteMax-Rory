@@ -17,7 +17,7 @@ GET TIME []
 
 */
 
-
+//TODO: MAKE ARRAYLIST OF UNEQUE INTO AN ARRAY 
 
 
 
@@ -26,7 +26,9 @@ GET TIME []
 
 
 import java.io.*;
-import java.util.*; 
+import java.util.*;
+
+
   
 
 
@@ -39,7 +41,8 @@ import java.util.*;
 
         // insted of reading words from a file I just creatd a fake list 
             //of words to go through to test the LL and array structers 
-        String[] testData = {"hi", "sdfhjl", "h", "a" ,"sdf" , "sdf", "h", "b", "sdfdhjl" ,"ssdf" , " dasdf",  "sdfsfhjl" ,"sdweff" , " srfvdf", "h", "c", "h", "d"};
+        //String[] testData = {"hi", "sdfhjl", "h", "a" ,"sdf" , "h", "b", "sdfdhjl" ,"ssdf" , " dasdf",  "sdfsfhjl" ,"sdweff" , " srfvdf", "h", "c", "h", "d"};
+        String[] testData = {"a" , "b", "c" , "e", "b", "c" , "e", "a", "c", "e", "a", "b", "e", "c", "b", "a"};
 
         long startTime;
         long stopTime;
@@ -80,30 +83,12 @@ import java.util.*;
             System.out.println(  unique.get(i) + "\t" + "\t" + follows.get(i).toString());
         }
 
+
+        System.out.println(makeWords(unique, follows));
         System.out.println("");
         System.out.println("");
         System.out.println("");
 
-            // MAKE THE RANDOM WRITING FROM THE LISTS 
-                // get a word from the unequ
-        int index = unique.indexOf("a");
-        for(int i =0; i < 10; i++){
-            
-
-                // get a random following word from the follows 
-            int rando = randoNum();
-            Object tempWord = follows.get(index).get(rando);
-            System.out.println(" the curent word is "+ tempWord);  
-            System.out.println("the next word is " + follows.get(unique.indexOf(tempWord)).get(rando));
-            tempWord = follows.get(unique.indexOf(tempWord)).get(rando);
-            index = unique.indexOf(tempWord);
-            
-            
-   
-            System.out.println(" ");  
-            System.out.println(" ");  
-            System.out.println(" ");  
-        }
 
 
 
@@ -115,11 +100,50 @@ import java.util.*;
         
         System.out.println("this program ran");
     }
-        // generates a random number 
-    public static int randoNum() {
-        return 0;   // i will fix this later 
-        //(int) (Math.random() *    (follows.get(index).size())   );
+
+
+
+
+
+
+
+    public static String makeWords(ArrayList<String> unique, ArrayList<LinkedList> follows){
+        String text = "";
+            // MAKE THE RANDOM WRITING FROM THE LISTS 
+                // get a word from the unequ
+
+                int r = (int) (Math.random() * unique.size());
+                int index = unique.indexOf(unique.get(r));
+                Object tempWord = unique.get(index);
+                for(int i =0; i < 10; i++){
+                    
+        
+                        // get a random following word from the follows 
+                   
+                    
+                    System.out.println(" the curent word is "+ tempWord);  
+                    text += " " + tempWord;
+
+                    
+                    int rando = (int) (Math.random() *   (follows.get(index).size() -1 )  ) ;
+
+                    System.out.println("the next word is " + follows.get(unique.indexOf(tempWord)).get( rando )); 
+                            
+
+                    tempWord = follows.get(unique.indexOf(tempWord)).get(rando);
+                    index = unique.indexOf(tempWord);
+                    
+                    
+           
+                    
+                    System.out.println(" ");  
+                    System.out.println(" ");  
+                }
+                return(text);
     }
+
+
+
         
     
 }
